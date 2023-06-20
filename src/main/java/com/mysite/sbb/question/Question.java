@@ -4,15 +4,16 @@ import com.mysite.sbb.answer.Answer;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
 // question 테이블이 생김
 @Getter
 @Setter
 @Entity
+@ToString
 public class Question {
     @Id // PRIMARY KEY
     @GeneratedValue(strategy = GenerationType.IDENTITY) // AUTO_INCREMENT
