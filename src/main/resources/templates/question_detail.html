@@ -1,26 +1,33 @@
-<link rel="stylesheet" th:href="@{/style.css}" type="text/css">
-<h1>
-    <span th:text="${id}"></span>번
-    질문 상세내용
-</h1>
+<html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
 
-<h2 th:text="${question.subject}"></h2>
-<div th:text="${question.content}"></div>
+<head></head>
 
-<h5 th:text="|${#lists.size(question.answerList)}개의 답변이 있습니다.|"></h5>
+<body>
+<div class="container my-3" layout:fragment="content">
 
-<form method="POST" th:action="@{|/answer/create/${question.id}|}">
-    <!-- 여러줄 입력이 가능한 input -->
-    <div>
-        <span>내용</span>
-        <br>
-        <textarea name="content" placeholder="내용" rows="15"></textarea>
-    </div>
-    <button type="submit">답변등록</button>
-</form>
+    <table class="table">
 
-<div>
-    <ul>
-        <li th:each="answer : ${question.answerList}" th:text="|${answer.id}번답변 : ${answer.content}|"></li>
-    </ul>
+        <thead class="table-dark">
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성일시</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="q, loop : ${questionList}">
+            <td>
+                <a th:href="@{|/question/detail/${q.id}|}" th:text="${loop.count}"></a>
+            </td>
+            <td>
+                <a th:href="@{|/question/detail/${q.id}|}" th:text="${q.subject}"></a>
+            </td>
+            <td th:text="${#temporals.format(q.createDate, 'yy-MM-dd HH:mm')}"></td>
+        </tr>
+        </tbody>
+    </table>
+
 </div>
+</body>
+
+</html>
