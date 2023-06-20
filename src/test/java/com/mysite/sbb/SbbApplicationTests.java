@@ -53,6 +53,8 @@ class SbbApplicationTests {
 		a1.setQuestion(q2); // 어떤 질문의 답변인지 알기위해서 Question 객체가 필요하다.
 		a1.setCreateDate(LocalDateTime.now());
 		answerRepository.save(a1);
+
+		q2.getAnswerList().add(a1); // 조금 더 객체지향적으로 변했다.
 	}
 
 	@Test
