@@ -1,7 +1,14 @@
-<h1>
-    <span th:text="${id}"></span>번
-    질문 상세내용
 </h1>
 
 <h2 th:text="${question.subject}"></h2>
 <div th:text="${question.content}"></div>
+
+<form method="POST" th:action="@{|/answer/create/${question.id}|}">
+    <!-- 여러줄 입력이 가능한 input -->
+    <div>
+        <span>내용</span>
+        <br>
+        <textarea name="content" placeholder="내용" rows="15"></textarea>
+    </div>
+    <button type="submit">답변등록</button>
+</form>
