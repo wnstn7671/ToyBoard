@@ -27,6 +27,7 @@ class SbbApplicationTests {
 	private QuestionRepository questionRepository;
 	@Autowired
 	private AnswerRepository answerRepository;
+	@Autowired
 	private QuestionService questionService;
 
 	@BeforeEach
