@@ -5,6 +5,7 @@
 <body>
 <div class="container my-3" layout:fragment="content">
 
+    <!--/*
     <table class="table">
         <thead class="table-dark">
         <tr>
@@ -88,6 +89,7 @@
     </table>
 
     <hr>
+    */-->
 
     <table class="table">
 
@@ -101,7 +103,8 @@
         <tbody>
         <tr th:each="q, loop : ${paging}">
             <td>
-                <a th:href="@{|/question/detail/${q.id}|}" th:text="${loop.count}"></a>
+                <a th:href="@{|/question/detail/${q.id}|}"
+                   th:text="${paging.totalElements - (paging.number * paging.size) - loop.index}"></a>
             </td>
             <td>
                 <a th:href="@{|/question/detail/${q.id}|}" th:text="${q.subject}"></a>
@@ -110,6 +113,7 @@
         </tr>
         </tbody>
     </table>
+
 
     <nav th:if="${!paging.isEmpty()}">
         <ul class="pagination justify-content-center">
