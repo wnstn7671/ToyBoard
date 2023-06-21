@@ -1,6 +1,7 @@
 package com.mysite.sbb.question;
 
 import com.mysite.sbb.answer.Answer;
+import com.mysite.sbb.user.SiteUser;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,6 +12,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
 // question 테이블이 생김
 @Getter
 @Setter
@@ -20,13 +22,10 @@ public class Question {
     @Id // PRIMARY KEY
     @GeneratedValue(strategy = GenerationType.IDENTITY) // AUTO_INCREMENT
     private Integer id; // INT id
-
     @Column(length = 200) // VARCHAR(200)
     private String subject;
-
     @Column(columnDefinition = "TEXT") // TEXT
     private String content;
-
     private LocalDateTime createDate; // DATETIME
 
     // OneToMany 자바세상에서의 편의를 위해서 필드 생성
@@ -39,6 +38,9 @@ public class Question {
     @LazyCollection(LazyCollectionOption.EXTRA) // answerList.size(); 함수가 실행될 때 SELECT COUNT 실행
     // OneToMany 에는 직접객체초기화
     private List<Answer> answerList = new ArrayList<>();
+
+    @ManyToOne
+    private SiteUser author;
 
     public void addAnswer(Answer a) {
         a.setQuestion(this);

@@ -1,6 +1,7 @@
 package com.mysite.sbb.answer;
 
 import com.mysite.sbb.question.Question;
+import com.mysite.sbb.user.SiteUser;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,4 +28,6 @@ public class Answer {
     @ToString.Exclude // ToString 대상에서 제외
     private Question question;
     // `public class Answer` @ManyToOne `private Question question`
+    @ManyToOne
+    private SiteUser author;
 }
