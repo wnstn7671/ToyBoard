@@ -15,12 +15,17 @@
 
         <div class="mb-3">
             <label class="form-label" for="subject">제목</label>
-            <input class="form-control" id="subject" name="subject" th:value="${questionForm.subject}" type="text">
+            <input class="form-control" th:field="*{subject}" type="text">
+            <!--
+            th:field="*{subject}" ==> id="subject" name="subject" th:value="*{subject}"
+            -->
         </div>
         <div class="mb-3">
             <label class="form-label" for="content">내용</label>
-            <textarea class="form-control" id="content" name="content" rows="10"
-                      th:text="${questionForm.content}"></textarea>
+            <textarea class="form-control" rows="10" th:field="*{content}"></textarea>
+            <!--
+            th:field="*{content} ==> id="content" name="content" th:text="*{content}"
+            -->
         </div>
         <input class="btn btn-primary my-2" type="submit" value="저장하기">
     </form>
