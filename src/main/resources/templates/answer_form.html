@@ -1,0 +1,25 @@
+<html layout:decorate="~{layout}">
+
+<head></head>
+
+<body>
+
+<div class="container" layout:fragment="content">
+    <h5 class="my-3 border-bottom pb-2">답변 수정</h5>
+
+    <form method="post" th:action th:object="${answerForm}">
+
+        <div th:replace="~{form_errors :: formErrorsFragment}"></div>
+
+        <div class="mb-3">
+            <label class="form-label" for="content">내용</label>
+            <textarea class="form-control" rows="10" th:field="*{content}"></textarea>
+        </div>
+
+        <input class="btn btn-primary my-2" type="submit" value="저장하기">
+    </form>
+</div>
+
+</body>
+
+</html>
