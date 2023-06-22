@@ -24,6 +24,12 @@
                    th:href="@{|/question/modify/${question.id}|}"
                    th:if="${question.author != null and #authentication.getPrincipal().getUsername() == question.author.username}"
                    th:text="수정"></a>
+
+                <a class="btn btn-sm btn-outline-secondary" onclick="return confirm('정말로 삭제하시겠습니까?');"
+                   sec:authorize="isAuthenticated()"
+                   th:href="@{|/question/delete/${question.id}|}"
+                   th:if="${question.author != null and #authentication.getPrincipal().getUsername() == question.author.username}"
+                   th:text="삭제"></a>
             </div>
 
         </div>
