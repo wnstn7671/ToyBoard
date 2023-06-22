@@ -27,6 +27,7 @@ public class Question {
     @Column(columnDefinition = "TEXT") // TEXT
     private String content;
     private LocalDateTime createDate; // DATETIME
+    private LocalDateTime modifyDate;
 
     // OneToMany 자바세상에서의 편의를 위해서 필드 생성
     // 이 녀석은 실제 DB 테이블에 칼럼이 생성되지 않는다.

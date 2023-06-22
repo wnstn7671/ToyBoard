@@ -8,7 +8,7 @@
 
     <h5 class="my-3 border-bottom pb-2">질문등록</h5>
 
-    <form method="post" th:action="@{/question/create}" th:object="${questionForm}">
+    <form method="post" th:action th:object="${questionForm}">
         <div th:replace="~{form_errors :: formErrorsFragment}"></div>
 
         <div class="mb-3">
