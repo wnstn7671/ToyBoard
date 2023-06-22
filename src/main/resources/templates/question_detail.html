@@ -1,4 +1,4 @@
-<html layout:decorate="~{layout}">
+<html layout:decorate="~{layout}" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head></head>
 
@@ -38,8 +38,13 @@
     <form class="my-3" method="post" th:action="@{|/answer/create/${question.id}|}" th:object="${answerForm}">
         <div th:replace="~{form_errors :: formErrorsFragment}"></div>
 
-        <textarea class="form-control" rows="10" th:field="*{content}"></textarea>
-        <input class="btn btn-primary my-2" type="submit" value="답변등록">
+        <textarea class="form-control" disabled maxlength="20000" placeholder="로그인 후 이용해주세요." required
+                  rows="10" sec:authorize="isAnonymous()" th:field="*{content}"></textarea>
+        <textarea class="form-control" maxlength="20000" placeholder="내용(20,000자 이하)" required
+                  rows="10" sec:authorize="isAuthenticated()" th:field="*{content}"></textarea>
+
+        <input class="btn btn-primary my-2" disabled sec:authorize="isAnonymous()" type="submit" value="답변등록">
+        <input class="btn btn-primary my-2" sec:authorize="isAuthenticated()" type="submit" value="답변등록">
     </form>
 </div>
 </body>
