@@ -3,11 +3,16 @@ package com.mysite.sbb.user;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.security.Principal;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Controller
@@ -51,5 +56,15 @@ public class UserController {
         }
 
         return "redirect:/";
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/me")
+    public String showMe(Model model, Principal principal) {
+        String username = principal.getName();
+        Optional<SiteUser> user = userService.findUser(username);
+        SiteUser siteUser = user.get();
+        model.addAttribute("siteUser",siteUser);
+        return "me";
     }
 }

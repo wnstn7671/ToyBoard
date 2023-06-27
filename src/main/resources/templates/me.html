@@ -1,0 +1,42 @@
+<!-- me.html (뷰 템플릿) -->
+<!DOCTYPE html>
+<html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Profile</title>
+    <style>
+        .profile-container {
+            text-align: center;
+        }
+
+        .table {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .table th,
+        .table td {
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body layout:fragment="content">
+<div class="profile-container">
+    <h1 class="title">Welcome, <span th:text="${siteUser.getUsername()}"></span>!</h1>
+</div>
+<table class="table">
+    <tr>
+        <th>이름</th>
+        <td th:text="${siteUser.username}" colspan="3"></td>
+    </tr>
+    <tr>
+        <th>이메일</th>
+        <td th:text="${siteUser.email}" colspan="3"></td>
+    </tr>
+</table>
+</body>
+</html>
