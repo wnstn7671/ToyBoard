@@ -8,6 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 public interface AnswerRepository extends JpaRepository<Answer, Integer> {
     @Transactional
     @Modifying
-    @Query(value = "ALTER TABLE answer AUTO_INCREMENT = 1", nativeQuery = true)
+    @Query(value = "ALTER TABLE answer ALTER COLUMN id RESTART WITH 1", nativeQuery = true)
     void clearAutoIncrement();
 }

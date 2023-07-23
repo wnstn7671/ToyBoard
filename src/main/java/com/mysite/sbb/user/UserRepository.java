@@ -12,7 +12,7 @@ public interface UserRepository extends JpaRepository<SiteUser, Long> {
     // @Modifying // 만약 아래 쿼리가 SELECT가 아니라면 이걸 붙여야 한다.
     @Modifying
     // nativeQuery = true 여야 MySQL 쿼리문법 사용 가능
-    @Query(value = "ALTER TABLE site_user AUTO_INCREMENT = 1", nativeQuery = true)
+    @Query(value = "ALTER TABLE site_user ALTER COLUMN id RESTART WITH 1\n", nativeQuery = true)
     void clearAutoIncrement();
 
     Optional<SiteUser> findByUsername(String username);

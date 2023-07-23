@@ -15,7 +15,7 @@ public interface QuestionRepository extends JpaRepository<Question, Integer> {
     // @Modifying // 만약 아래 쿼리가 SELECT가 아니라면 이걸 붙여야 한다.
     @Modifying
     // nativeQuery = true 여야 MySQL 쿼리문법 사용 가능
-    @Query(value = "ALTER TABLE question AUTO_INCREMENT = 1", nativeQuery = true)
+    @Query(value = "ALTER TABLE question ALTER COLUMN id RESTART WITH 1", nativeQuery = true)
     void clearAutoIncrement();
 
     Question findBySubject(String subject);
