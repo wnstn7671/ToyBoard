@@ -25,4 +25,4 @@ logging:
 
 custom:
   site:
-    baseUrl: https://www.sbb.gsjs.site
+    baseUrl: https://sbb.gsjs.site
